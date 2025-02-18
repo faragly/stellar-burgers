@@ -5,7 +5,7 @@ import {
   PasswordInput
 } from '@zlden/react-developer-burger-ui-components';
 import styles from '../common.module.css';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ResetPasswordUIProps } from './type';
 
 export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({

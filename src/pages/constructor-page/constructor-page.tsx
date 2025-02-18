@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useSelector } from '../../services/store';
 
 import styles from './constructor-page.module.css';

@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { Input, Button } from '@zlden/react-developer-burger-ui-components';
 import styles from '../common.module.css';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { PageUIProps } from '../common-type';
 
 export const ForgotPasswordUI: FC<PageUIProps> = ({
