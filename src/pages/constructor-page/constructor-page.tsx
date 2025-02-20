@@ -1,12 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useSelector } from '../../services/store';
+import { FC } from 'react';
 
 import styles from './constructor-page.module.css';
 
-import { BurgerIngredients } from '../../components';
-import { BurgerConstructor } from '../../components';
-import { Preloader } from '../../components/ui';
-import { FC } from 'react';
+import { BurgerConstructor, BurgerIngredients } from '@components';
+import { Preloader } from '@ui';
 
 export const ConstructorPage: FC = () => {
   /** TODO: взять переменную из стора */

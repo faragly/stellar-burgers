@@ -6,4 +6,5 @@ import legacy from '@vitejs/plugin-legacy'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths(), legacy()],
+  envPrefix: ['VITE_', 'BURGER_']
 })

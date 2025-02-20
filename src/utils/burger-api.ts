@@ -1,5 +1,5 @@
 import { setCookie, getCookie } from './cookie';
-import { TIngredient, TOrder, TUser } from './types';
+import { IApiError, TIngredient, TOrder, TUser } from './types';
 
 const URL = import.meta.env.BURGER_API_URL;
 
@@ -68,6 +68,7 @@ type TFeedsResponse = TServerResponse<{
 }>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 type TOrdersResponse = TServerResponse<{
   data: TOrder[];
 }>;
@@ -234,3 +235,11 @@ export const logoutApi = () =>
       token: localStorage.getItem('refreshToken')
     })
   }).then((res) => checkResponse<TServerResponse<unknown>>(res));
+
+export const handleApiError = (
+  error: unknown,
+  defaultMessage: string
+): string => {
+  const errorResponse = error as IApiError;
+  return errorResponse?.message || defaultMessage;
+};

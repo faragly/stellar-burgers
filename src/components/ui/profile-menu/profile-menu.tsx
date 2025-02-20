@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import styles from './profile-menu.module.css';
 import { NavLink } from 'react-router';
 import { ProfileMenuUIProps } from './type';

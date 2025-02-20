@@ -1,26 +1,27 @@
+import { FC, SyntheticEvent, useEffect, useState, ChangeEvent } from 'react';
+import { selectUser, updateUser } from '@slices';
+import { Preloader } from '@ui';
 import { ProfileUI } from '@ui-pages';
-import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'services/store';
 
 export const Profile: FC = () => {
-  /** TODO: взять переменную из стора */
-  const user = {
-    name: '',
-    email: ''
-  };
-
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
   const [formValue, setFormValue] = useState({
-    name: user.name,
-    email: user.email,
+    name: user?.name ?? '',
+    email: user?.email ?? '',
     password: ''
   });
 
   useEffect(() => {
-    setFormValue((prevState) => ({
-      ...prevState,
+    setFormValue((state) => ({
+      ...state,
       name: user?.name || '',
       email: user?.email || ''
     }));
   }, [user]);
+
+  if (!user) return <Preloader />;
 
   const isFormChanged =
     formValue.name !== user?.name ||
@@ -29,6 +30,8 @@ export const Profile: FC = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
+
+    dispatch(updateUser(formValue));
   };
 
   const handleCancel = (e: SyntheticEvent) => {
@@ -40,7 +43,7 @@ export const Profile: FC = () => {
     });
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormValue((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value
@@ -56,6 +59,4 @@ export const Profile: FC = () => {
       handleInputChange={handleInputChange}
     />
   );
-
-  return null;
 };
