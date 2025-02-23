@@ -1,11 +1,12 @@
 import { FC } from 'react';
+import { Link } from 'react-router';
+
 import {
   Input,
   Button,
   PasswordInput
 } from '@zlden/react-developer-burger-ui-components';
 import styles from '../common.module.css';
-import { Link } from 'react-router';
 import { RegisterUIProps } from './type';
 
 export const RegisterUI: FC<RegisterUIProps> = ({
@@ -28,6 +29,7 @@ export const RegisterUI: FC<RegisterUIProps> = ({
       >
         <>
           <div className='pb-6'>
+            {/** @ts-ignore: проблема в типизации событий onPointerEnterCapture | onPointerLeaveCapture */}
             <Input
               type='text'
               placeholder='Имя'
@@ -37,11 +39,10 @@ export const RegisterUI: FC<RegisterUIProps> = ({
               error={false}
               errorText=''
               size='default'
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
             />
           </div>
           <div className='pb-6'>
+            {/** @ts-ignore */}
             <Input
               type='email'
               placeholder='E-mail'
@@ -51,8 +52,6 @@ export const RegisterUI: FC<RegisterUIProps> = ({
               error={false}
               errorText=''
               size={'default'}
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
             />
           </div>
           <div className='pb-6'>

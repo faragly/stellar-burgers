@@ -4,9 +4,21 @@ import {
   useSelector as selectorHook
 } from 'react-redux';
 
-import { userReducer } from './slices';
+import {
+  burgerConstructorReducer,
+  ingredientsReducer,
+  orderFeedReducer,
+  orderHistoryReducer,
+  orderReducer,
+  userReducer
+} from './slices';
 
 const rootReducer = combineReducers({
+  burgerConstructor: burgerConstructorReducer,
+  ingredients: ingredientsReducer,
+  order: orderReducer,
+  orderFeed: orderFeedReducer,
+  orderHistory: orderHistoryReducer,
   user: userReducer
 });
 

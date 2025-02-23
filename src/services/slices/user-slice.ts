@@ -79,32 +79,32 @@ export const logoutUser = createAsyncThunk(
 );
 
 type TUserState = {
-  isChecked: boolean;
-  isLoading: boolean;
+  checked: boolean;
+  loading: boolean;
   user: TUser | null;
   error: string | null;
 };
 
 const initialState: TUserState = {
-  isChecked: false,
-  isLoading: false,
+  checked: false,
+  loading: false,
   user: null,
   error: null
 };
 
 const commonPendingHandler = (state: TUserState) => {
-  state.isLoading = true;
+  state.loading = true;
   state.error = null;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const commonRejectedHandler = (state: TUserState, action: any) => {
-  state.isLoading = false;
+  state.loading = false;
   state.error = action.error.message;
 };
 
 const commonFulfilledHandler = (state: TUserState) => {
-  state.isLoading = false;
+  state.loading = false;
 };
 
 const userSlice = createSlice({
@@ -112,7 +112,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     authCheck: (state) => {
-      state.isChecked = true;
+      state.checked = true;
     }
   },
   extraReducers: (builder) => {
@@ -126,15 +126,15 @@ const userSlice = createSlice({
       .addCase(loginUser.fulfilled, commonFulfilledHandler);
     builder
       .addCase(fetchUser.pending, (state) => {
-        state.isLoading = true;
+        state.loading = true;
       })
       .addCase(fetchUser.rejected, (state) => {
-        state.isChecked = true;
-        state.isLoading = false;
+        state.checked = true;
+        state.loading = false;
       })
       .addCase(fetchUser.fulfilled, (state, { payload }) => {
         state.user = payload;
-        state.isChecked = true;
+        state.checked = true;
         commonFulfilledHandler(state);
       });
     builder
@@ -154,8 +154,8 @@ const userSlice = createSlice({
   },
   selectors: {
     selectUser: (state) => state.user,
-    selectUserLoadingState: state => state.isLoading,
-    selectUserCheckedState: state => state.isChecked,
+    selectUserLoadingState: state => state.loading,
+    selectUserCheckedState: state => state.checked,
     selectUserError: state => state.error
   }
 });
