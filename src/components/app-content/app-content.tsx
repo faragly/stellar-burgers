@@ -45,7 +45,10 @@ export const AppContent: FC = () => {
     <>
       <Routes location={backgroundLocation || location}>
         <Route path='' element={<ConstructorPage />} />
-        <Route path='feed' element={<Feed />} />
+        <Route path='feed'>
+          <Route index element={<Feed />} />
+          <Route path=':number' element={<OrderInfo />} />
+        </Route>
         <Route
           path='login'
           element={
@@ -106,7 +109,7 @@ export const AppContent: FC = () => {
             }
           />
           <Route
-            path='feed/:id'
+            path='feed/:number'
             element={
               <Modal title='' onClose={closeModal}>
                 <OrderInfo />
